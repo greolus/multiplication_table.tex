@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{setspace} 
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{pythontex}
+
+\geometry{a4paper}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm} 
+\pagestyle{empty}
+\begin{document}
+\begin{multicols}{6}
+
+\large
+\setstretch{2.2}
+\noindent 
+\begin{pycode}
+import random
+
+exercise_times = 10
+
+quests = []
+for i in [3,4,6,7,8,9,12]:
+    for j in [3,4,6,7,8,9,12]:
+        quests.append( "%d x %d=\hspace{3cm}\\\\" % (i,j) )
+
+random.shuffle( quests )
+for t in range( exercise_times ):
+    for q in quests:
+        print(q)
+    
+\end{pycode}
+\end{multicols}
+\end{document}
