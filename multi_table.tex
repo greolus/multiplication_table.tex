@@ -18,7 +18,7 @@ import random
 
 # settings 
 exercise_times = 10
-level = "hell"
+level = "zen"
 
 # levels data
 levels = {}
@@ -30,30 +30,36 @@ levels["hell"] = [2,3,4,5,6,7,8,9,10,
                   11,13,17,23,29,31,37,
                   41,43,47,53,59,61,67,
                   71,73,79,83,89,97,101,103,107,109]
-
+levels["zen"]  = ['3 x 4=\\\\','6 x 4=\\\\','4 x 3=\\\\','3 x 8=\\\\','4 x 6=\\\\','2 x 6=\\\\','3 x 8=\\\\', '4 x 7=\\\\', '4 x 4=\\\\', '4 x 9=\\\\', '3 x 4=\\\\','9 x 5 =\\\\']
 # choose the multipliers of the level
-multiplierX = levels[level]
 
-if (level == "advanced"):
-    multiplierY = levels["beginner"]
+if (level == "zen"):
+    for t in range( exercise_times ):
+        for q in levels[level]:
+            print(q)
 else:
-    multiplierY = levels[level]
+    multiplierX = levels[level]
 
-## to avoid too many pages, hell level has only two exercise
-if( level == "hell" ):
-    exercise_times = 2  
-# create the table
-quests = []
-for i in multiplierY:
-    for j in multiplierX:
-        quests.append( "%d x %d=\\\\" % (i,j) )
+    if (level == "advanced"):
+        multiplierY = levels["beginner"]
+    else:
+        multiplierY = levels[level]
 
-random.shuffle( quests )
+    ## to avoid too many pages, hell level has only two exercise
+    if( level == "hell" ):
+        exercise_times = 2  
+    # create the table
+    quests = []
+    for i in multiplierY:
+        for j in multiplierX:
+            quests.append( "%d x %d=\\\\" % (i,j) )
 
-# print the table
-for t in range( exercise_times ):
-    for q in quests:
-        print(q)
+    random.shuffle( quests )
+
+    # print the table
+    for t in range( exercise_times ):
+        for q in quests:
+            print(q)
 
 \end{pycode}
 \end{multicols}
