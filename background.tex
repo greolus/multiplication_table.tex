@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{pgfornament}
+\usepackage{lipsum}
+\usepackage{pythontex}
+\usepackage{geometry}
+\geometry{a4paper}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm} 
+\usepackage{multicol}
+\usepackage{background}
+
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usetikzlibrary{calc}
+
+
+\backgroundsetup{
+scale=1,
+opacity=1,
+angle=0,
+color=RoyalBlue,
+contents={%
+    \begin{tikzpicture}[every node/.style={inner sep=0pt}]
+        % \node[anchor=north west](CNW)
+        % at (current page.north west) {\pgfornament[width=3cm,symmetry=h]{194}};
+        % \node[anchor=north east](CNE)
+        % at (current page.north east) {\pgfornament[width=3cm,symmetry=v]{131}};
+        % \node[anchor=south west](CSW)
+        % at (current page.south west) {\pgfornament[width=3cm]{194}};
+        \node[anchor=east](CSE)
+        at (current page.south east) { \includegraphics[width=1.4cm]{Tom_Riddle.png}};
+        \node[anchor=west](CSW)
+        at (current page.south west) { \includegraphics[width=1.4cm]{Dumbledore.png}};
+        % \pgfornamenthline{CNW}{CNE}{north}{87};
+        % \pgfornamenthline{CSW}{CSE}{south}{87};
+        % \pgfornamentvline{CNW}{CSW}{west}{87};
+        % \pgfornamentvline{CNE}{CSE}{east}{87};
+        \node[anchor=center](C)
+        at (current page.center) {\includegraphics[width=20cm]{professor_trelawney.png}};
+        \node[anchor=south, color=black](S)
+        at (current page.south) { \tiny Harry, only because Voldemort made a grave error, he mistook the division symbol for the multiplication symbol, failed in Trelawney's Divination class exam.};
+    \end{tikzpicture}% 
+  }
+}
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+  \LARGE 
+  \textbf{ The Math… my dear, you have a lot of quests in your future path } \\
+\end{center}
+\begin{multicols}{4}
+
+\begin{pycode}
+import random
+
+multiplierX = [3,4,6,7,8,9,0.3,0.4,0.6]
+multiplierY = [4,6,7,8]
+
+quests = []
+
+quests  += [f"\\noindent \\[ {x} \\times {y} = \\]" for x in multiplierX for y in multiplierY]
+
+# # quests += [f"\\noindent {xy[0]} {symbol} {xy[1]}=\\\\\n" 
+# #                   for xy in [[75,65],[87,37],[93,33],[62,12],[68,53],[118,33],[47,34] ]  for symbol in ['+','-']]
+
+# quests += [f"\\noindent \\[ {xy[0]} {symbol} {xy[1]}= \\]" 
+#                   for xy in [ [11,11],[11,12],[12,11],[12,12] ]  for symbol in ['\\times']]
+quests += [f"\\noindent \\[ {xy[0]} {symbol} {xy[1]}=\\]" 
+                  for xy in [ [12,2],[10,2],[8,2],[6,2],[6,3],[9,3],[12,3],[21,3] ]  for symbol in ['\\div']]
+multipliers = [ [2,2], [3,2],[3,3] ]
+quests += [f"\\noindent\\[\\frac{{{xy[0] * xy[1]}}}{{x}} = {xy[0]};\\  x=\\] " for xy in multipliers ]
+quests += [f"\\noindent\\[\\frac{{x}}{{{xy[0]}}} = {xy[1]};\\  x=\\] " for xy in multipliers ] 
+
+quests = quests * 3
+random.shuffle(quests)
+
+for quest in quests:
+  print(quest)
+\end{pycode}
+
+\end{multicols}
+\end{document}
